@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Please have a look at [features/bus.feature](https://github.com/cucumber/event-bus/blob/master/features/bus.feature) for an
+example application.
 
 ## Development
 

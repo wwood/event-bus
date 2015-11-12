@@ -1,5 +1,5 @@
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
-require 'aruba/cucumber'
+
 require 'simplecov'
 SimpleCov.command_name 'cucumber'
 SimpleCov.start
