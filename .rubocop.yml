@@ -1,0 +1,23 @@
+AllCops:
+  Exclude:
+    - 'tmp/**/*'
+  DisplayCopNames: true
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Exclude:
+    - lib/event/name_resolver.rb
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/event/name_resolver.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/event/name_resolver.rb
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/event/name_resolver.rb
