@@ -1,5 +1,9 @@
 #!/usr/bin/env rake
 
+namespace :gem do
+  require 'bundler/gem_tasks'
+end
+
 desc 'Default task'
 task default: :test
 
