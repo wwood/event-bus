@@ -1,4 +1,11 @@
-# event-bus
+# Event Bus
+
+[![Build Status](https://travis-ci.org/cucumber/event-bus.svg?branch=master)](https://travis-ci.org/cucumber/event-bus)
+[![Code Climate](https://codeclimate.com/github/cucumber/event-bus.svg)](https://codeclimate.com/github/cucumber/event-bus)
+[![Coverage Status](https://coveralls.io/repos/cucumber/event-bus/badge.svg?branch=master)](https://coveralls.io/r/cucumber/event-bus?branch=master)
+[![Gem Version](https://badge.fury.io/rb/event-bus.svg)](http://badge.fury.io/rb/proxy_pac_rb)
+[![Downloads](http://img.shields.io/gem/dt/event-bus.svg?style=flat)](http://rubygems.org/gems/proxy_pac_rb)
+
 
 This gem helps you to setup an event bus for your library.
 
