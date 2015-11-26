@@ -24,7 +24,11 @@ module Event
     private
 
     def camel_case(underscored_name)
-      underscored_name.to_s.split('_').map { |word| word.upcase[0].to_s + word[1..-1].to_s }.join
+      if RUBY_VERSION < '1.9.3'
+        underscored_name.to_s.split('_').map { |word| word.upcase.chars.to_a[0] + word.chars.to_a[1..-1].join }.join
+      else
+        underscored_name.to_s.split('_').map { |word| word.upcase[0] + word[1..-1] }.join
+      end
     end
 
     # Thanks ActiveSupport
