@@ -31,8 +31,7 @@ describe Event::Bus do
   end
 
   let!(:another_test_event_instance) do
-    class_double('Events::AnotherTestEvent').tap do |double|
-      stub_const('Events::AnotherTestEvent', double)
+    instance_double('Events::AnotherTestEvent').tap do |double|
       allow(double).to receive(:is_a?).with(Class).and_return(false)
       allow(double).to receive(:class).and_return('Events::AnotherTestEvent')
     end
@@ -133,10 +132,6 @@ describe Event::Bus do
 
   describe '#register' do
     context 'when valid custom handler' do
-      before(:each) do
-        allow(name_resolver).to receive(:transform).with(event_name).and_return(event_klass)
-      end
-
       let!(:handler_klass) do
         class_double('MyHandler').tap do |double|
           stub_const('MyHandler', double)
@@ -150,11 +145,43 @@ describe Event::Bus do
         end
       end
 
-      before :each do
-        bus.register(event_klass, MyHandler.new)
+      context 'when single event class' do
+        before(:each) do
+          allow(name_resolver).to receive(:transform).with(event_name).and_return(event_klass)
+        end
+
+        before :each do
+          bus.register(event_klass, MyHandler.new)
+        end
+
+        it { expect { bus.notify event_instance }.not_to raise_error }
       end
 
-      it { expect { bus.notify event_instance }.not_to raise_error }
+      context 'when list of event classes' do
+        let(:another_event_klass) { another_test_event_klass }
+        let(:another_event_name) { another_test_event_klass }
+        let(:another_event_instance) { another_test_event_instance }
+
+        let!(:handler_instance) do
+          instance_double('MyHandler').tap do |double|
+            allow(double).to receive(:call).with(event_instance)
+            allow(double).to receive(:call).with(another_event_instance)
+          end
+        end
+
+        before(:each) do
+          allow(name_resolver).to receive(:transform).with(event_name).and_return(event_klass)
+          allow(name_resolver).to receive(:transform).with(another_event_name).and_return(another_event_klass)
+        end
+
+        before :each do
+          bus.register([event_klass, another_test_event_klass], MyHandler.new)
+        end
+
+        it { expect { bus.notify event_instance }.not_to raise_error }
+        it { expect { bus.notify another_event_instance }.not_to raise_error }
+
+      end
     end
 
     context 'when malformed custom handler' do

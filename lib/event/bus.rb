@@ -19,10 +19,12 @@ module Event
 
       fail ArgumentError, 'Please pass either an object#call or a handler block' if handler.nil? || !handler.respond_to?(:call)
 
-      event_class = @resolver.transform(event_id)
+      Array(event_ids).flatten.each do |id|
+        event_class = @resolver.transform(id)
 
-      fail EventNameResolveError, %(Transforming "#{event_id}" into an event name failed for unknown reason.) if event_class.nil?
-      @handlers[event_class.to_s] << handler
+        fail EventNameResolveError, %(Transforming "#{id}" into an event name failed for unknown reason.) if event_class.nil?
+        @handlers[event_class.to_s] << handler
+      end
 
       nil
     end
