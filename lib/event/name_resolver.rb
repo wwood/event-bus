@@ -18,7 +18,7 @@ module Event
         constantize("#{@default_namespace}::#{camel_case(event_id)}")
       end
     rescue => e
-      raise EventNameResolveError, %(Transforming "#{event_id}" into an event class failed: #{e.message}.)
+      raise EventNameResolveError, %(Transforming "#{event_id}" into an event class failed: #{e.message}.\n\n#{e.backtrace.join("\n")})
     end
 
     private
