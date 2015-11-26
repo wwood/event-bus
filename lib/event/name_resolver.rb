@@ -43,7 +43,13 @@ module Event
           constant.const_get(name)
         else
           candidate = constant.const_get(name)
-          next candidate if constant.const_defined?(name, false)
+
+          if RUBY_VERSION < '1.9.3'
+            next candidate if constant.const_defined?(name)
+          else
+            next candidate if constant.const_defined?(name, false)
+          end
+
           next candidate unless Object.const_defined?(name)
 
           # Go down the ancestors to check if it is owned directly. The check
