@@ -26,6 +26,8 @@ group :development, :test do
     gem 'pry', '~>0.9.12'
   end
 
+  gem 'aruba', '~>0.11.pre3'
+
   # Run development tasks
   gem 'rake', '~> 10.4.2'
 
