@@ -1,8 +1,7 @@
 sudo: false
-env:
-  - CI=1
 language: ruby
-bundler_args: --without development debug profile
+script: script/test
+install: script/bootstrap --without development debug profile
 rvm:
   - 1.8.7
   - 1.9.2
@@ -10,4 +9,26 @@ rvm:
   - 2.0.0
   - 2.1.7
   - 2.2.3
-script: script/test
+  - jruby
+  - jruby-20mode
+  - jruby-21mode
+  - jruby-9.0.0.0
+  - jruby-9.0.0.0-20mode
+  - jruby-9.0.0.0-21mode
+  - rbx
+matrix:
+  allow_failures:
+  - rvm: rbx
+  - rvm: jruby-9.0.0.0
+  - rvm: jruby-9.0.0.0-20mode
+  - rvm: jruby-9.0.0.0-21mode
+notifications:
+  email:
+    - cukes-devs@googlegroups.com
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/d4d9080e2a8c4910f609
+env:
+  global:
+    - JRUBY_OPTS='--dev -X-C -Xcli.debug=true --debug
+    - CI=1
