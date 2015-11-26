@@ -18,7 +18,7 @@ module Event
     end
 
     # Register for an event
-    # 
+    #
     # @param [String, Symbol, Class, Array] event_ids
     #   If Array, register multiple events witht the same handler. If String,
     #   Symbol, Class register handler for given event.

@@ -180,7 +180,6 @@ describe Event::Bus do
 
         it { expect { bus.notify event_instance }.not_to raise_error }
         it { expect { bus.notify another_event_instance }.not_to raise_error }
-
       end
     end
 
