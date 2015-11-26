@@ -21,3 +21,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Exclude:
     - lib/event/name_resolver.rb
+
+Style/HashSyntax:
+  Enabled: false
