@@ -2,6 +2,16 @@
 Feature: Subscribe To Bus
   Background:
     Given I use a fixture named "simple_app"
+    And an executable named "bin/simple_app" with:
+    """
+    #!/usr/bin/env ruby
+
+    $LOAD_PATH << File.expand_path('../../lib', __FILE__)
+
+    require 'simple_app'
+    runner = SimpleApp::Runner.new
+    runner.start
+    """
 
   Scenario: Register to single event
     Given a file named "lib/simple_app.rb" with:
