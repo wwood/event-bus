@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Notify subscribers about event'
   spec.description   = 'This gem notifies subscribers about event'
-  spec.homepage      = 'https://github.com/cucumber/event-bus'
+  spec.homepage      = 'https://github.com/dg-ratiodata/event-bus'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
